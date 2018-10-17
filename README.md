@@ -1,6 +1,6 @@
 # MatrixJS
 JS Matrix class that supports functions as matrix entries
----
+
 # Node Command line Vector test example
 ```
 > var Vector = require('./MatrixJS');
