@@ -24,7 +24,7 @@ function Vector(v) {
         } else {
             return null;
         }
-    };
+    }
 
     this.toString = function() {
         var s = '[ ';
@@ -42,7 +42,38 @@ function Vector(v) {
 
 }
 
-var MatrixJS = (function() {
-    //this.v = new Vector(f);
-});
-module.exports = Vector;
+function MatrixJS(m) {
+    // where m is an array of arrays of functions
+    // arrays in m are assumed to have the same length
+    this._height = m.length;
+    this._width = 0;
+    if (this._height > 0) { this._width = m[0].length }
+    this._row = [];         // matrix as an array of row vectors
+    this._col = [];         // matrix as an array of column vectors
+    // generate matrix rows
+    for (var i = 0; i < this._height; i++) {
+        var row = [];
+        for (var j = 0; j < this._width; j++) {
+            row.push(m[i][j]);
+        }
+        this._row.push(new Vector(row));
+    }
+    // generate matrix columns
+    for (var j = 0; j < this._width; j++) {
+        var column = [];
+        for (var i = 0; i < this._height; i++) {
+            column.push(m[i][j]);
+        }
+        this._col.push(new Vector(column));
+    }
+    
+    this.toString = function() {
+        var s = '';
+        for (var i = 0; i < this._height; i++) {
+            s += this._row[i].toString() + '\n';
+        }
+        return s;
+    }
+
+}
+module.exports = MatrixJS;
