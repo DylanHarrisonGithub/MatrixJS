@@ -5,8 +5,6 @@ JS Matrix class that supports functions as matrix entries
 ```
 > var MatrixJS = require('./MatrixJS');
 > var m = new MatrixJS([ [ function() { return 1; }, function() { return 2; } ], [ function() { return 3; }, function() { return 4; }] ]);
-> m.toString();
-'[ (2*x+1) (2) ]\n[ (3) (4) ]\n'
 > m.getHeight();
 2
 > m.getWidth();
