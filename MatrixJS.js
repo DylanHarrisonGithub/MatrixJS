@@ -66,6 +66,20 @@ function MatrixJS(m) {
         }
         this._col.push(new Vector(column));
     }
+
+    this.getHeight = function() { return this._height; };
+    this.getWidth = function() { return this._width; };
+    this.getRow = function(i) { return ((i > -1 && i < this._height ) ? this._row[i].v : null); };
+    this.getCol = function(j) { return ((j > -1 && j < this._width ) ? this._col[j].v : null); };
+    this.getEntry = function(i,j) { return (((i > -1 && i < this._height ) && (j > -1 && j < this._width )) ?  this._row[i].v[j] : null); };
+    this.setEntry = function(i,j,f) {
+        if ((i > -1 && i < this._height ) && (j > -1 && j < this._width )) {
+            this._row[i].v[j] = {
+                'f': f, 
+                'string': '(' + f.toString().match(/return\s*(.*?)\s*;/)[1] + ')'
+            };
+        }
+    }
     
     this.toString = function() {
         var s = '';
