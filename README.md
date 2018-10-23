@@ -3,7 +3,7 @@ JS Matrix class that supports functions as matrix entries
 
 # matrix multiplication test example in Node
 ```
-> var MatrixJS = require('./MatrixJS');
+> var matrixJS = require('./MatrixJS');
 > var a = 1;
 > var b = 2;
 > var c = 3;
@@ -12,8 +12,8 @@ JS Matrix class that supports functions as matrix entries
 > var f = 6;
 > var g = 7;
 > var h = 8;
-> var m1 = new MatrixJS([ [ function() { return a; }, function() { return b; } ], [ function() { return c; }, function() { return d; }] ]);
-> var m2 = new MatrixJS([ [ function() { return e+1; }, function() { return 3*f; } ], [ function() { return g*a; }, function() { return h*h; }] ]);
+> var m1 = new matrixJS.MatrixFN([ [ function() { return a; }, function() { return b; } ], [ function() { return c; }, function() { return d; }] ]);
+> var m2 = new matrixJS.MatrixFN([ [ function() { return e+1; }, function() { return 3*f; } ], [ function() { return g*a; }, function() { return h*h; }] ]);
 > m1.toString();
 '[ (a) (b) ]\n[ (c) (d) ]\n'
 > m2.toString();
