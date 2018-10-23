@@ -78,6 +78,39 @@ function MatrixJS(m) {
                 'f': f, 
                 'string': '(' + f.toString().match(/return\s*(.*?)\s*;/)[1] + ')'
             };
+            this._col[j].v[i] = {
+                'f': f, 
+                'string': '(' + f.toString().match(/return\s*(.*?)\s*;/)[1] + ')'
+            };
+        }
+    }
+
+    // [this]*[m2]
+    this.mul = function(m2) {
+        // compatible matrices check
+        if (this._width == m2._height) {
+            // == m2.width*this.height
+            // generate result matrix
+            var mArray = [];
+            for (var i = 0; i < this._height; i++) {
+                mArray.push([]);
+                for (var j = 0; j < m2._width; j++) {
+                    mArray[i].push( function() { return 0; } );
+                }
+            }
+            var r = new MatrixJS(mArray);
+            // fill result entries
+            for (var j = 0; j < r._width; j++) {
+                for (var i = 0; i < r._height; i++) {
+                    var d = this._row[i].dot(m2._col[j]);
+                    r.setEntry(i,j,d.f);
+                    r._row[i].v[j].string = d.string;
+                    r._col[j].v[i].string = d.string;
+                }
+            }
+            return r;            
+        } else {
+            return null;
         }
     }
     
